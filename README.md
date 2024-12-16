@@ -19,8 +19,8 @@ uv autolysis.py happiness.csv
 ```
 
 ## Output:
-> Summary Statistics: Basic statistics including mean, median, standard deviation, and others for each column.
-> Missing Values: The number of missing values in each column of the dataset.
-> Correlation Matrix: A heatmap visualizing the correlations between numerical columns.
-> Visualizations: Three visualizations are created: Histograms of all columns, a Correlation Heatmap, and Box Plots for numerical variables.
-> Narrative: A detailed AI-generated narrative that describes the data and insights from the analysis.
+1)Summary Statistics: Basic statistics including mean, median, standard deviation, and others for each column./n
+2)Missing Values: The number of missing values in each column of the dataset./n
+3)Correlation Matrix: A heatmap visualizing the correlations between numerical columns./n
+4)Visualizations: Three visualizations are created: Histograms of all columns, a Correlation Heatmap, and Box Plots for numerical variables./n
+5)Narrative: A detailed AI-generated narrative that describes the data and insights from the analysis./n
