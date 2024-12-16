@@ -26,6 +26,7 @@ import openai  # Ensure this library is installed: pip install openai
 # Function to perform data analysis: summary statistics, missing values, and correlation matrix
 def perform_data_analysis(dataframe):
     print("Starting data analysis...")  # Debugging line
+    
     # Compute summary statistics for numerical columns
     stats_summary = dataframe.describe()
 
@@ -45,6 +46,7 @@ def perform_data_analysis(dataframe):
 # Function to identify outliers using the Interquartile Range (IQR) method
 def identify_outliers(dataframe):
     print("Identifying outliers...")  # Debugging line
+    
     # Extract numeric columns
     numeric_data = dataframe.select_dtypes(include=[np.number])
 
@@ -61,6 +63,7 @@ def identify_outliers(dataframe):
 # Function to create visualizations: correlation heatmap, outliers plot, and distribution plot
 def create_visualizations(correlation_matrix, outliers_count, dataframe, output_directory):
     print("Creating visualizations...")  # Debugging line
+    
     # Generate a heatmap for the correlation matrix
     plt.figure(figsize=(10, 8))
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
@@ -103,6 +106,7 @@ def create_visualizations(correlation_matrix, outliers_count, dataframe, output_
 # Function to generate README.md with analysis narrative and visualizations
 def generate_readme(stats_summary, missing_data, correlation_matrix, outliers_count, output_directory):
     print("Generating README file...")  # Debugging line
+    
     # Write analysis report to a markdown file
     readme_path = os.path.join(output_directory, 'README.md')
     try:
