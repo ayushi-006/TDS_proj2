@@ -15,6 +15,7 @@
 # ]
 # ///
 
+# Import required libraries
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -25,8 +26,8 @@ import openai
 from dotenv import load_dotenv
 
 # Load AI Proxy token from environment variable
-load_dotenv()
-openai.api_key = os.getenv("AIPROXY_TOKEN")
+load_dotenv() # Load environment variables from .env file
+openai.api_key = os.getenv("AIPROXY_TOKEN") # Set OpenAI API key from environment variable
 
 # Set the API base URL for the proxy
 openai.api_base = "https://aiproxy.sanand.workers.dev/openai/v1"
@@ -46,8 +47,8 @@ def analyze_data(csv_filename):
         df = pd.read_csv(csv_filename, encoding='ISO-8859-1')  # Fallback to ISO-8859-1
 
     # Generate basic statistics
-    summary_stats = df.describe(include='all')
-    missing_values = df.isnull().sum()
+    summary_stats = df.describe(include='all')# Summary statistics for all columns
+    missing_values = df.isnull().sum() # Count of missing values for each column
 
     # Correlation matrix
     correlation_matrix = df.corr(numeric_only=True)
@@ -57,6 +58,10 @@ def analyze_data(csv_filename):
 
 # Function to generate visualizations
 def create_visualizations(df, correlation_matrix):
+    """
+    Creates histograms, correlation heatmap, and box plots for the dataset.
+    Saves the visualizations as PNG files.
+    """
     # 1. Histogram of each column
     df.hist(figsize=(12, 8))
     plt.tight_layout()
@@ -82,7 +87,13 @@ def create_visualizations(df, correlation_matrix):
 
     return ['histograms.png', 'correlation_heatmap.png', 'boxplots.png']
 
+
+# Function to generate a narrative using an AI model
 def generate_narrative(df, summary_stats, missing_values, correlation_matrix):
+ """
+    Sends the data analysis results to an AI model for generating insights in natural language.
+    """
+    
     # Prepare context for the LLM
     data_context = {
         "columns": list(df.columns),
@@ -122,6 +133,10 @@ def generate_narrative(df, summary_stats, missing_values, correlation_matrix):
 
 
 def main(csv_filename):
+      """
+    Main function to read the CSV file, analyze the data, generate visualizations,
+    create a narrative, and save the results in a Markdown file.
+    """
     try:
         # Verify file exists
         if not os.path.exists(csv_filename):
@@ -174,8 +189,9 @@ def main(csv_filename):
 if __name__ == "__main__":
     import sys
     if len(sys.argv) < 2:
+        # Display usage instructions if no filename is provided
         print("Usage: uv run autolysis.py happiness.csv")
     else:
-        csv_filename = sys.argv[1]
+        csv_filename = sys.argv[1] # Get the filename from command-line arguments
         main(csv_filename)
 
