@@ -3,7 +3,8 @@
 # Automated Data Analysis Report
 
 ## Overview
-This repository contains a Python script for performing automated data analysis on CSV files. The script processes the provided CSV files, generates statistical summaries, identifies missing values, visualizes data distributions, and creates a narrative report on the insights derived from the dataset. 
+
+This repository provides a robust **Automated Data Analysis Tool** that enables users to perform comprehensive exploratory data analysis (EDA) on any dataset with minimal effort. The tool computes summary statistics, identifies missing values, detects outliers, and generates insightful visualizations to better understand the data.
 
 The script uses FastAPI for API integration, OpenAI's API for generating data insights, and various data analysis libraries such as Pandas, Seaborn, and Matplotlib for visualizations.
 
@@ -12,51 +13,103 @@ The script uses FastAPI for API integration, OpenAI's API for generating data in
 ### Input Files:
 The script requires 3 CSV files as input, which will be processed to extract insights and generate visualizations. 
 
-Example of running the script:
+# Automated Data Analysis Tool
+## Features
+
+- **Data Insights**: Summary statistics and correlation matrices for numerical data.
+- **Outlier Detection**: Identifies anomalies using the Interquartile Range (IQR) method.
+- **Visualizations**: Auto-generates plots such as:
+  - Correlation Heatmap
+  - Outlier Distribution
+  - Numerical Data Distribution
+- **Detailed Reporting**: Creates a `README.md` file summarizing the analysis and insights.
+
+## Prerequisites
+
+- Python 3.9 or higher
+- Required Python libraries:
+  - `pandas`
+  - `numpy`
+  - `matplotlib`
+  - `seaborn`
+  - `scikit-learn`
+  - `openai`
+
+## Usage
+
+### Command-Line Execution
+
+Run the script with the following command:
 
 ```bash
-uv autolysis.py happiness.csv
+uv autolysis.py <path_to_csv_file>
 ```
-## Output:
 
-1. **Summary Statistics**: Basic statistics including mean, median, standard deviation, and others for each column.
-2. **Missing Values**: The number of missing values in each column of the dataset.
-3. **Correlation Matrix**: A heatmap visualizing the correlations between numerical columns.
-4. **Visualizations**: Three visualizations are created: Histograms of all columns, a Correlation Heatmap, and Box Plots for numerical variables.
-5. **Narrative**: A detailed AI-generated narrative that describes the data and insights from the analysis.
+This command will:
+- Analyze the dataset
+- Generate summary statistics
+- Detect outliers
+- Create visualizations
+- Produce a detailed `README.md` file with results
 
+### Outputs
 
-## How it Works
+All outputs, including visualizations and the `README.md` report, will be saved in the current directory.
 
-1. **Data Import**: The script begins by loading the input CSV files into a Pandas DataFrame.
-2. **Data Analysis**: It performs an analysis to compute summary statistics, detect missing values, and generate a correlation matrix.
-3. **Data Visualizations**:
-   - **Histograms** are generated for each column to display the distribution of values.
-   - **Correlation Heatmap** is generated to visually represent correlations between numerical variables.
-   - **Box Plots** are produced for numerical columns to show their distributions and detect any outliers.
-4. **Narrative Generation**: The script sends the analysis results (summary statistics, missing values, and correlation matrix) to OpenAI’s API to generate a narrative that provides insights into the data.
-5. **Markdown Report**: The final results are written to a `README.md` file, including the statistical summaries, missing value counts, correlation matrix, generated narrative, and visualizations.
-
-## Data Insights
+## Example Outputs
 
 ### Summary Statistics
-- **Columns**: Each dataset's columns are listed to provide a quick reference.
-- **Summary Statistics**: Key statistical metrics like mean, standard deviation, min, max, and percentiles for each column in the dataset.
+
+The tool provides descriptive statistics for all numerical columns:
+
+| Statistic    | Column1 | Column2 | ... |
+|--------------|---------|---------|-----|
+| Mean         | 12.34   | 56.78   | ... |
+| Std Dev      | 1.23    | 4.56    | ... |
+| Min          | 10.00   | 50.00   | ... |
+| 25th Percentile | 11.00 | 52.00 | ... |
+| Median       | 12.00   | 55.00   | ... |
+| 75th Percentile | 13.00 | 58.00 | ... |
+| Max          | 14.00   | 60.00   | ... |
 
 ### Missing Values
-- A detailed count of missing values for each column, allowing for the identification of columns that require cleaning or imputation.
 
-### Correlation Matrix
-- A heatmap showing the correlation between numerical columns. This can be used to understand relationships between variables.
+A summary of missing data:
 
-### AI-Generated Narrative
-The AI model generates insights by analyzing the patterns and relationships in the data. Some potential insights include:
-- Which variables are strongly correlated.
-- Whether any variables exhibit high variance or potential outliers.
-- Key trends observed in the data, such as any significant skew or anomalies in distributions.
+| Column       | Missing Values Count |
+|--------------|-----------------------|
+| Column1      | 3                     |
+| Column2      | 0                     |
 
-## Visualizations
-The following visualizations are included in the report:
-1. **Histograms**: Distribution of values across all columns.
-2. **Correlation Heatmap**: Visual representation of correlations between numerical variables.
-3. **Box Plots**: Distributions of numerical variables, highlighting outliers.
+### Visualizations
+
+#### Correlation Heatmap
+
+This heatmap shows the relationships between numerical variables:
+
+![image](https://github.com/user-attachments/assets/f6c19e22-ac80-40c7-8429-2758735ebb3c)
+
+#### Outliers Detection
+
+Bar chart indicating the number of outliers in each column:
+
+![image](https://github.com/user-attachments/assets/42f930d3-626e-487f-a059-b4e126a35d6d)
+
+#### Distribution of Data
+
+Distribution plot for the first numerical column:
+
+![image](https://github.com/user-attachments/assets/16810839-6737-46ca-a678-5eccacb8bb52)
+
+## LLM-Generated Story
+
+This tool leverages an AI-powered language model to create a data-driven story based on the analysis. The story provides insights and highlights significant trends and patterns in the dataset.
+
+## Contribution
+welcome contributions! Feel free to submit issues or pull requests to improve the functionality or documentation.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
